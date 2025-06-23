@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1em;
+      justify-content: center;
+      margin-top: 2em;
+    }
+    .gallery img {
+      width: 250px;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+    .lightbox {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .lightbox img {
+      max-width: 90vw;
+      max-height: 90vh;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="members.html">Members</a>
+    <a href="office.html">Office</a>
+    <a href="mission.html">Mission</a>
+    <a href="upcomingevents.html">Events</a>
+    <a href="gallery.html">Gallery</a>
+  </nav>
+  <div class="container">
+    <h1>Photo Gallery</h1>
+    <div class="gallery">
+      <img src="gallery1.jpg" alt="Event Photo 1">
+      <img src="gallery2.jpg" alt="Event Photo 2">
+      <img src="gallery3.jpg" alt="Event Photo 3">
+      <img src="gallery4.jpg" alt="Event Photo 4">
+      <!-- Add more images as needed -->
+    </div>
+    <div class="lightbox" id="lightbox">
+      <img id="lightbox-img" src="" alt="Expanded View">
+    </div>
+  </div>
+  <script>
+    const galleryImages = document.querySelectorAll('.gallery img');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+
+    galleryImages.forEach(img => {
+      img.addEventListener('click', () => {
+        lightbox.style.display = 'flex';
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+      });
+    });
+
+    lightbox.addEventListener('click', () => {
+      lightbox.style.display = 'none';
+    });
+  </script>
+</body>
+</html>
